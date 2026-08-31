@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+
+<div class="page">
+
+    <h1>About Flight Delay Prediction System</h1>
+
+    <h2>Project Introduction</h2>
+
+    <p>
+        The Flight Delay Prediction System is a machine learning-based web
+        application designed to predict whether a flight is likely to be delayed
+        based on historical flight records and operational factors. The system
+        analyzes various flight attributes such as airline, departure and arrival
+        airports, departure time, flight distance, weather-related delays, and
+        previous delay information to provide accurate delay predictions.
+    </p>
+
+    <h2>Objectives</h2>
+
+    <ul>
+        <li>Analyze historical flight data to identify delay patterns.</li>
+        <li>Predict whether a flight will be delayed or on time.</li>
+        <li>Identify the major factors contributing to flight delays.</li>
+        <li>Assist passengers in better travel planning.</li>
+        <li>Support airlines in improving operational efficiency and scheduling.</li>
+    </ul>
+
+    <h2>Dataset Features</h2>
+
+    <ul>
+        <li>Airline</li>
+        <li>Origin Airport</li>
+        <li>Destination Airport</li>
+        <li>Departure Delay</li>
+        <li>Arrival Delay</li>
+        <li>Air Time</li>
+        <li>Distance</li>
+        <li>Taxi In / Taxi Out Time</li>
+        <li>Weather Delay</li>
+        <li>Security Delay</li>
+        <li>Late Aircraft Delay</li>
+        <li>Delay Status (Target Variable)</li>
+    </ul>
+
+    <h2>Technologies Used</h2>
+
+    <ul>
+        <li>Python</li>
+        <li>Flask</li>
+        <li>Pandas</li>
+        <li>NumPy</li>
+        <li>Scikit-learn</li>
+        <li>Matplotlib</li>
+        <li>Seaborn</li>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>Machine Learning</li>
+    </ul>
+
+    <h2>Machine Learning Workflow</h2>
+
+    <ul>
+        <li>Data Collection</li>
+        <li>Data Cleaning & Preprocessing</li>
+        <li>Exploratory Data Analysis (EDA)</li>
+        <li>Feature Engineering</li>
+        <li>Model Training</li>
+        <li>Delay Prediction</li>
+        <li>Model Evaluation</li>
+    </ul>
+
+</div>
+
+{% endblock %}

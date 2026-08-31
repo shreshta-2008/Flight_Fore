@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Data Preprocessing{% endblock %}
+
+{% block content %}
+
+<div class="page">
+
+    <h1>Flight Data Preprocessing</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Missing Values</h3>
+            <p>
+                Handle missing values in departure time, arrival time,
+                elapsed time, delay causes and cancellation-related fields.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Data Cleaning</h3>
+            <p>
+                Remove duplicate records, resolve inconsistent flight
+                information and validate numerical flight attributes.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Categorical Encoding</h3>
+            <p>
+                Encode categorical features such as airline, origin airport,
+                destination airport, tail number and cancellation reason.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Feature Scaling</h3>
+            <p>
+                Normalize numerical features such as departure delay,
+                taxi time, air time, distance and scheduled duration.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Time Features</h3>
+            <p>
+                Process year, month, day, day of week and scheduled
+                departure and arrival times to capture temporal patterns.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Delay Classification</h3>
+            <p>
+                Prepare the <strong>Delay</strong> column as the target
+                variable for predicting whether a flight is delayed.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="workflow">
+
+        <h2>Flight Data Preprocessing Workflow</h2>
+
+        <p>
+            Raw Flight Dataset → Data Cleaning → Missing Value Handling →
+            Feature Extraction → Categorical Encoding → Feature Scaling →
+            Delay Classification → Processed Dataset
+        </p>
+
+    </div>
+
+    <div class="workflow">
+
+        <h2>Dataset Features</h2>
+
+        <p>
+            <strong>Dataset Size:</strong> 120,000 flight records
+        </p>
+
+        <p>
+            <strong>Features:</strong>
+            Flight date, airline, flight number, origin and destination
+            airports, scheduled and actual departure/arrival times,
+            departure delay, taxi times, air time, distance,
+            cancellation information and delay causes.
+        </p>
+
+        <p>
+            <strong>Target Variable:</strong> Delay
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

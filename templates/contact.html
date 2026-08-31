@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+
+<div class="page">
+
+    <h1>Contact Us</h1>
+
+    <h2>Flight Delay Prediction System</h2>
+
+    <p>
+        Have questions about the Flight Delay Prediction System, the dataset,
+        machine learning models, or the prediction results? We'd be happy to
+        hear from you. Send us your feedback, suggestions, or technical queries
+        using the form below.
+    </p>
+
+    <form>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email address">
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="Enter the subject">
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="6" placeholder="Type your message here..."></textarea>
+
+        <button type="submit">
+            Send Message
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

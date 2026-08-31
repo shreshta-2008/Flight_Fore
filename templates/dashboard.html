@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="page">
+
+    <h1>Flight Delay Prediction Dashboard</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Flights</h3>
+            <h2>--</h2>
+        </div>
+
+        <div class="card">
+            <h3>Delayed Flights</h3>
+            <h2>--</h2>
+        </div>
+
+        <div class="card">
+            <h3>On-Time Flights</h3>
+            <h2>--</h2>
+        </div>
+
+        <div class="card">
+            <h3>Delay Percentage</h3>
+            <h2>--%</h2>
+        </div>
+
+    </div>
+
+    <h2>Flight Delay Analytics</h2>
+
+    <div class="chart-placeholder">
+        Flight delay charts and visualizations will appear here.
+    </div>
+
+    <div class="cards" style="margin-top:30px;">
+
+        <div class="card">
+            <h3>Average Departure Delay</h3>
+            <h2>-- min</h2>
+        </div>
+
+        <div class="card">
+            <h3>Average Arrival Delay</h3>
+            <h2>-- min</h2>
+        </div>
+
+        <div class="card">
+            <h3>Most Delayed Airline</h3>
+            <h2>--</h2>
+        </div>
+
+        <div class="card">
+            <h3>Top Origin Airport</h3>
+            <h2>--</h2>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

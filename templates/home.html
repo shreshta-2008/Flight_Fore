@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home - Flight Delay Prediction System
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <h1>Flight Delay Prediction System</h1>
+
+    <h2>
+        Predict Flight Delays Using Machine Learning
+    </h2>
+
+    <p>
+        Analyze historical flight records, airline information,
+        departure and arrival delays, weather conditions, and
+        operational factors to predict whether a flight is likely
+        to be delayed.
+    </p>
+
+    <div class="buttons">
+
+        <a href="{{ url_for('prediction') }}" class="btn">
+            Predict Delay
+        </a>
+
+        <a href="{{ url_for('dashboard') }}" class="btn secondary">
+            View Dashboard
+        </a>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2>About the System</h2>
+
+    <p>
+        The Flight Delay Prediction System is a machine learning-based
+        web application that analyzes historical flight data to predict
+        whether a flight will arrive on time or experience delays.
+    </p>
+
+    <p>
+        It helps passengers make informed travel decisions and enables
+        airlines to improve operational planning through data-driven
+        delay prediction.
+    </p>
+
+</section>
+
+<section class="section">
+
+    <h2>Key Features</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>✈️ Flight Dataset</h3>
+            <p>Upload and explore historical flight records.</p>
+        </div>
+
+        <div class="card">
+            <h3>🧹 Data Preprocessing</h3>
+            <p>Handle missing values, encode categorical data, and prepare the dataset.</p>
+        </div>
+
+        <div class="card">
+            <h3>📊 Data Visualization</h3>
+            <p>Visualize airline performance, delays, and flight trends.</p>
+        </div>
+
+        <div class="card">
+            <h3>🤖 Machine Learning</h3>
+            <p>Train and evaluate multiple prediction models for flight delays.</p>
+        </div>
+
+        <div class="card">
+            <h3>⏱️ Delay Prediction</h3>
+            <p>Predict whether a flight is likely to be delayed or on time.</p>
+        </div>
+
+        <div class="card">
+            <h3>📈 Analytics & Reports</h3>
+            <p>View performance metrics, prediction reports, and insights.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section workflow">
+
+    <h2>How the System Works</h2>
+
+    <div class="flow">
+
+        <span>Flight Dataset</span>
+        <b>→</b>
+
+        <span>Preprocessing</span>
+        <b>→</b>
+
+        <span>Feature Engineering</span>
+        <b>→</b>
+
+        <span>ML Model</span>
+        <b>→</b>
+
+        <span>Delay Prediction</span>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <h2>Ready to Predict Flight Delays?</h2>
+
+    <a href="{{ url_for('prediction') }}" class="btn">
+        Predict Flight Delay
+    </a>
+
+</section>
+
+{% endblock %}

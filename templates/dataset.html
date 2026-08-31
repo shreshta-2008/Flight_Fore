@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Dataset{% endblock %}
+
+{% block content %}
+
+<div class="page">
+
+    <h1>Flight Delay Dataset</h1>
+
+    <p>
+        This page provides an overview of the flight delay dataset used for
+        training and evaluating the machine learning models. The dataset
+        contains historical flight records along with operational and delay
+        information that helps predict whether a flight will be delayed.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Flights</h3>
+            <p>Total number of flight records will appear here.</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Features</h3>
+            <p>Number of dataset columns will appear here.</p>
+        </div>
+
+        <div class="card">
+            <h3>Missing Values</h3>
+            <p>Missing value statistics will appear here.</p>
+        </div>
+
+        <div class="card">
+            <h3>Duplicate Records</h3>
+            <p>Duplicate record count will appear here.</p>
+        </div>
+
+    </div>
+
+    <h2>Dataset Features</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Flight Information</h3>
+            <p>Airline, Flight Number, Month, Day, Origin and Destination Airport.</p>
+        </div>
+
+        <div class="card">
+            <h3>Operational Details</h3>
+            <p>Scheduled Departure, Taxi In, Taxi Out, Air Time and Distance.</p>
+        </div>
+
+        <div class="card">
+            <h3>Delay Information</h3>
+            <p>Departure Delay, Arrival Delay, Weather Delay, Security Delay and Airline Delay.</p>
+        </div>
+
+        <div class="card">
+            <h3>Target Variable</h3>
+            <p>Delay Status (Delayed / On-Time).</p>
+        </div>
+
+    </div>
+
+    <h2>Dataset Operations</h2>
+
+    <button>Upload Dataset</button>
+    <button>View Dataset</button>
+    <button>Dataset Summary</button>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+
+<div class="page">
+
+    <h1>Flight Analytics Reports</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Flight Summary Report</h3>
+            <p>
+                View overall flight statistics including total flights,
+                airlines, airports, distances and flight durations.
+            </p>
+            <button>Generate Report</button>
+        </div>
+
+        <div class="card">
+            <h3>Delay Analysis Report</h3>
+            <p>
+                Analyze departure delays, arrival delays, delayed flights
+                and major factors contributing to flight delays.
+            </p>
+            <button>Generate Report</button>
+        </div>
+
+        <div class="card">
+            <h3>Prediction Report</h3>
+            <p>
+                View flight delay prediction results, predicted delay
+                class, probability and model predictions.
+            </p>
+            <button>Generate Report</button>
+        </div>
+
+        <div class="card">
+            <h3>Model Performance Report</h3>
+            <p>
+                View machine learning performance using accuracy,
+                precision, recall, F1-score and other evaluation metrics.
+            </p>
+            <button>Generate Report</button>
+        </div>
+
+        <div class="card">
+            <h3>Airline Performance Report</h3>
+            <p>
+                Compare airlines based on flight volume, departure delays,
+                arrival delays and cancellation rates.
+            </p>
+            <button>Generate Report</button>
+        </div>
+
+        <div class="card">
+            <h3>Airport Analysis Report</h3>
+            <p>
+                Analyze origin and destination airports using flight
+                frequency, delays and operational performance.
+            </p>
+            <button>Generate Report</button>
+        </div>
+
+        <div class="card">
+            <h3>Cancellation Report</h3>
+            <p>
+                View cancelled flights and analyze cancellation patterns
+                and cancellation reasons.
+            </p>
+            <button>Generate Report</button>
+        </div>
+
+        <div class="card">
+            <h3>Dataset Report</h3>
+            <p>
+                View dataset size, features, preprocessing steps,
+                missing values and data quality information.
+            </p>
+            <button>Generate Report</button>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

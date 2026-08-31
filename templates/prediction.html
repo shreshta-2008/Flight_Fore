@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction{% endblock %}
+
+{% block content %}
+
+<div class="page">
+
+    <h1>Flight Delay Prediction</h1>
+
+    <p>
+        Enter the flight details below to predict whether the flight is
+        likely to be delayed or arrive on time.
+    </p>
+
+    <form>
+
+        <label>Airline</label>
+        <select>
+            <option>American Airlines (AA)</option>
+            <option>Delta Air Lines (DL)</option>
+            <option>United Airlines (UA)</option>
+            <option>Southwest Airlines (WN)</option>
+            <option>JetBlue Airways (B6)</option>
+            <option>Alaska Airlines (AS)</option>
+        </select>
+
+        <label>Origin Airport</label>
+        <input type="text" placeholder="Enter Origin Airport Code (e.g., ATL)">
+
+        <label>Destination Airport</label>
+        <input type="text" placeholder="Enter Destination Airport Code (e.g., LAX)">
+
+        <label>Month</label>
+        <input type="number" min="1" max="12" placeholder="Enter Month">
+
+        <label>Day of Month</label>
+        <input type="number" min="1" max="31" placeholder="Enter Day">
+
+        <label>Day of Week</label>
+        <select>
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+        </select>
+
+        <label>Scheduled Departure Time</label>
+        <input type="number" placeholder="HHMM (e.g., 1430)">
+
+        <label>Flight Distance (Miles)</label>
+        <input type="number" placeholder="Enter Flight Distance">
+
+        <label>Taxi Out Time (Minutes)</label>
+        <input type="number" placeholder="Enter Taxi Out Time">
+
+        <label>Taxi In Time (Minutes)</label>
+        <input type="number" placeholder="Enter Taxi In Time">
+
+        <label>Air Time (Minutes)</label>
+        <input type="number" placeholder="Enter Air Time">
+
+        <label>Departure Delay (Minutes)</label>
+        <input type="number" placeholder="Enter Departure Delay">
+
+        <button type="submit">
+            Predict Flight Delay
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
