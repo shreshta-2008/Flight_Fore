@@ -11,7 +11,7 @@ from sklearn.impute import SimpleImputer
 # ==========================================================
 
 df = pd.read_csv(
-    "C:/Users/srinu/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
+    "C:/Users/hp/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
 )
 
 
@@ -23,7 +23,7 @@ data = df.copy()
 # 1. Remove Leading and Trailing Spaces
 # ==========================================================
 
-for col in data.select_dtypes(include="object").columns:
+for col in data.select_dtypes(include="str").columns:
     data[col] = data[col].str.strip()
 
 
@@ -176,7 +176,7 @@ print(data.head())
 # Save Result
 # ==========================================================
 
-output_file = "C:/Users/srinu/PycharmProjects/FlightFore/datasets/flight_label_encoded.csv"
+output_file = "C:/Users/hp/PycharmProjects/FlightFore/datasets/flight_label_encoded.csv"
 
 data.to_csv(
     output_file,

@@ -3,8 +3,8 @@ import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.impute import SimpleImputer
 
-INPUT_FILE = r"C:/Users/srinu/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
-OUTPUT_FILE = r"C:/Users/srinu/PycharmProjects/FlightFore/datasets/flight_one_hot_encoded.csv"
+INPUT_FILE = r"C:/Users/hp/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
+OUTPUT_FILE = r"C:/Users/hp/PycharmProjects/FlightFore/datasets/flight_one_hot_encoded.csv"
 
 data = pd.read_csv(INPUT_FILE).copy()
 

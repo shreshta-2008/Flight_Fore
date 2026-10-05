@@ -12,13 +12,11 @@ from sklearn.preprocessing import (LabelEncoder, StandardScaler)
 # --------------------------------------------
 
 input_file = (
-    "C:/Users/srinu/PycharmProjects/FlightFore/datasets/"
-    "flights_5000_each_month_with_class_labels (1).csv"
+    "C:/Users/hp/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
 )
 
 output_file = (
-    "C:/Users/srinu/PycharmProjects/FlightFore/datasets/"
-    "final_flight_preprocess_M2.csv"
+    "C:/Users/hp/PycharmProjects/FlightFore/datasets/final_flight_preprocess_M2.csv"
 )
 
 
@@ -95,7 +93,7 @@ print(
 
 categorical_cols = (
     processed_df
-    .select_dtypes(include=["object"])
+    .select_dtypes(include=["str"])
     .columns
     .tolist()
 )
@@ -275,7 +273,7 @@ numeric_cols = (
 
 categorical_cols = (
     processed_df
-    .select_dtypes(include=["object"])
+    .select_dtypes(include=["str"])
     .columns
     .tolist()
 )

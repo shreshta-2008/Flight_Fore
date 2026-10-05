@@ -10,15 +10,30 @@
 # ---------------------------------------------------------
 
 import pandas as pd
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, Normalizer
+import numpy as np
+
+# ---------------------------------------------------------
+# IMPORTANT:
+# Use a non-GUI Matplotlib backend.
+# This prevents the Tkinter "init.tcl" error.
+# ---------------------------------------------------------
+
+import matplotlib
+matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
+
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, Normalizer
 
 
 # ------------------------------------------------------------
 # Load Flight Delay Dataset
 # ------------------------------------------------------------
 
-file_path = "C:/Users/srinu/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
+file_path = (
+    "C:/Users/hp/PycharmProjects/FlightFore/"
+    "datasets/flights_5000_each_month_with_class_labels (1).csv"
+)
 
 df = pd.read_csv(file_path)
 
@@ -55,10 +70,12 @@ df = df.drop_duplicates()
 # Step 3: Handle Missing Values
 # ---------------------------------------------------
 
+# ---------------------------------------------------
 # Numerical Columns
+# ---------------------------------------------------
 
 numerical_columns = df.select_dtypes(
-    include=['int64', 'float64']
+    include=["number"]
 ).columns
 
 
@@ -71,10 +88,12 @@ for column in numerical_columns:
     )
 
 
+# ---------------------------------------------------
 # Categorical Columns
+# ---------------------------------------------------
 
 categorical_columns = df.select_dtypes(
-    include=['object']
+    include=["object", "string"]
 ).columns
 
 
@@ -95,7 +114,7 @@ for column in categorical_columns:
 
 for column in categorical_columns:
 
-    df[column] = df[column].str.strip()
+    df[column] = df[column].astype("string").str.strip()
 
 
 # ------------------------------------------------------------
@@ -103,7 +122,7 @@ for column in categorical_columns:
 # ------------------------------------------------------------
 
 numeric_columns = df.select_dtypes(
-    include=['int64', 'float64']
+    include=["number"]
 ).columns
 
 
@@ -141,7 +160,8 @@ print(target_column)
 
 # ------------------------------------------------------------
 # Standardization (Z-score)
-# Mean = 0, Standard Deviation = 1
+# Mean = 0
+# Standard Deviation = 1
 # ------------------------------------------------------------
 
 standard_scaler = StandardScaler()
@@ -152,9 +172,14 @@ standardized = standard_scaler.fit_transform(
 )
 
 
-for i, col in enumerate(feature_numeric_columns):
-
-    df[col + "_Standardized"] = standardized[:, i]
+standardized_df = pd.DataFrame(
+    standardized,
+    columns=[
+        col + "_Standardized"
+        for col in feature_numeric_columns
+    ],
+    index=df.index
+)
 
 
 # ------------------------------------------------------------
@@ -170,9 +195,14 @@ scaled = minmax_scaler.fit_transform(
 )
 
 
-for i, col in enumerate(feature_numeric_columns):
-
-    df[col + "_Scaled"] = scaled[:, i]
+scaled_df = pd.DataFrame(
+    scaled,
+    columns=[
+        col + "_Scaled"
+        for col in feature_numeric_columns
+    ],
+    index=df.index
+)
 
 
 # ------------------------------------------------------------
@@ -181,7 +211,7 @@ for i, col in enumerate(feature_numeric_columns):
 # ------------------------------------------------------------
 
 normalizer = Normalizer(
-    norm='l2'
+    norm="l2"
 )
 
 
@@ -190,9 +220,32 @@ normalized = normalizer.fit_transform(
 )
 
 
-for i, col in enumerate(feature_numeric_columns):
+normalized_df = pd.DataFrame(
+    normalized,
+    columns=[
+        col + "_Normalized"
+        for col in feature_numeric_columns
+    ],
+    index=df.index
+)
 
-    df[col + "_Normalized"] = normalized[:, i]
+
+# ------------------------------------------------------------
+# Combine all preprocessing results
+# ------------------------------------------------------------
+# Using pd.concat() avoids the Pandas
+# "DataFrame is highly fragmented" warning.
+# ------------------------------------------------------------
+
+df = pd.concat(
+    [
+        df,
+        standardized_df,
+        scaled_df,
+        normalized_df
+    ],
+    axis=1
+)
 
 
 # ------------------------------------------------------------
@@ -231,7 +284,10 @@ print(df.duplicated().sum())
 # Save Preprocessed Dataset
 # ---------------------------------------------------
 
-output_file = "C:/Users/srinu/PycharmProjects/FlightFore/datasets/flight_minmax_standardized_normalized.csv"
+output_file = (
+    "C:/Users/hp/PycharmProjects/FlightFore/"
+    "datasets/flight_minmax_standardized_normalized.csv"
+)
 
 
 df.to_csv(
@@ -253,33 +309,102 @@ print(output_file)
 # Display Histogram of Preprocessed Data
 # ---------------------------------------------------
 
+print("\nCreating histogram...")
+
+
 pf = pd.read_csv(
     output_file
 )
 
 
+# ---------------------------------------------------
 # Select only numerical columns for histograms
+# ---------------------------------------------------
 
 histogram_columns = pf.select_dtypes(
-    include=['int64', 'float64']
+    include=["number"]
 ).columns
 
 
-pf[histogram_columns].hist(
-    figsize=(16, 12),
-    bins=10,
-    edgecolor='black'
+# ---------------------------------------------------
+# Limit the number of histograms
+# ---------------------------------------------------
+# Your dataset contains many numerical columns after
+# adding Standardized, Scaled and Normalized columns.
+# Plotting every column can create a huge figure.
+# ---------------------------------------------------
+
+histogram_columns = histogram_columns[:20]
+
+
+try:
+
+    pf[histogram_columns].hist(
+        figsize=(16, 12),
+        bins=10,
+        edgecolor="black"
+    )
+
+
+    plt.suptitle(
+        "Histogram of Preprocessed Flight Dataset",
+        fontsize=16,
+        fontweight="bold"
+    )
+
+
+    plt.tight_layout(
+        rect=[0, 0, 1, 0.96]
+    )
+
+
+    # ------------------------------------------------
+    # Save histogram instead of plt.show()
+    # This works without Tkinter.
+    # ------------------------------------------------
+
+    histogram_file = (
+        "C:/Users/hp/PycharmProjects/FlightFore/"
+        "datasets/flight_preprocessed_histogram.png"
+    )
+
+
+    plt.savefig(
+        histogram_file,
+        dpi=300,
+        bbox_inches="tight"
+    )
+
+
+    plt.close("all")
+
+
+    print("\nHistogram saved successfully.")
+    print("Histogram File:")
+    print(histogram_file)
+
+
+except Exception as e:
+
+    print("\nHistogram could not be generated.")
+    print("Reason:", e)
+
+
+# ---------------------------------------------------
+# Final Message
+# ---------------------------------------------------
+
+print("\n========================================")
+print("PREPROCESSING COMPLETED SUCCESSFULLY")
+print("========================================")
+
+print("\nFinal Dataset Shape:", df.shape)
+
+print("\nCSV File:")
+print(output_file)
+
+print("\nHistogram File:")
+print(
+    "C:/Users/hp/PycharmProjects/FlightFore/"
+    "datasets/flight_preprocessed_histogram.png"
 )
-
-
-plt.suptitle(
-    "Histogram of Preprocessed Flight Dataset",
-    fontsize=16,
-    fontweight="bold"
-)
-
-
-plt.tight_layout()
-
-
-plt.show()

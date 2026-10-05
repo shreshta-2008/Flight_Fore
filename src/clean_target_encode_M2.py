@@ -11,13 +11,11 @@ import numpy as np
 # ============================================================
 
 input_file = (
-    "C:/Users/srinu/PycharmProjects/FlightFore/datasets/"
-    "flights_5000_each_month_with_class_labels (1).csv"
+    "C:/Users/hp/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
 )
 
 output_file = (
-    "C:/Users/srinu/PycharmProjects/FlightFore/datasets/"
-    "flight_delay_preprocessed.csv"
+    "C:/Users/hp/PycharmProjects/FlightFore/datasets/flight_delay_preprocessed.csv"
 )
 
 
@@ -52,7 +50,7 @@ print(data.columns.tolist())
 # 4. REMOVE LEADING/TRAILING SPACES
 # ============================================================
 
-for col in data.select_dtypes(include="object").columns:
+for col in data.select_dtypes(include="str").columns:
 
     data[col] = data[col].str.strip()
 
@@ -133,7 +131,7 @@ print(data.shape)
 # ============================================================
 
 categorical_columns = data.select_dtypes(
-    include="object"
+    include="str"
 ).columns.tolist()
 
 
@@ -356,7 +354,7 @@ print(identifier_columns)
 # do not receive extreme target values.
 
 categorical_columns = data.select_dtypes(
-    include="object"
+    include="str"
 ).columns.tolist()
 
 

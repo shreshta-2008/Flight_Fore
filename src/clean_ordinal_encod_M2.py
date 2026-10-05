@@ -8,7 +8,7 @@ from sklearn.impute import SimpleImputer
 # Load Flight Delay Prediction Dataset
 # ==========================================================
 
-DATASET_PATH = r"C:/Users/srinu/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
+DATASET_PATH = r"C:/Users/hp/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
 
 df = pd.read_csv(DATASET_PATH)
 
@@ -166,7 +166,7 @@ print(final_output.head())
 # Save Dataset
 # ==========================================================
 
-OUTPUT_FILE = r"C:/Users/srinu/PycharmProjects/FlightFore/datasets/flight_ordinal_encoded.csv"
+OUTPUT_FILE = r"C:/Users/hp/PycharmProjects/FlightFore/datasets/flight_ordinal_encoded.csv"
 
 final_output.to_csv(
     OUTPUT_FILE,

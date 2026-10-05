@@ -23,12 +23,12 @@ import numpy as np
 # ------------------------------------------------------------
 
 input_file = (
-    "C:/Users/srinu/PycharmProjects/FlightFore/datasets/"
+    "C:/Users/hp/PycharmProjects/FlightFore/datasets/"
     "flights_5000_each_month_with_class_labels (1).csv"
 )
 
 output_file = (
-    "C:/Users/srinu/PycharmProjects/FlightFore/datasets/"
+    "C:/Users/hp/PycharmProjects/FlightFore/datasets/"
     "flight_missing_values_processed.csv"
 )
 
@@ -485,22 +485,30 @@ print("5. MISSING INDICATOR FEATURES")
 print("=" * 70)
 
 
-df_indicator = df_original.copy()
+# ------------------------------------------------------------
+# Create all missing indicator columns at once
+# ------------------------------------------------------------
+
+missing_indicators = (
+    df_original
+    .isnull()
+    .astype(int)
+)
+
+missing_indicators.columns = [
+    column + "_Missing"
+    for column in df_original.columns
+]
 
 
-# Create an indicator for every original column
-
-for column in df_original.columns:
-
-    indicator_column = (
-        column + "_Missing"
-    )
-
-    df_indicator[indicator_column] = (
-        df_original[column]
-        .isnull()
-        .astype(int)
-    )
+# Combine original data and indicators at once
+df_indicator = pd.concat(
+    [
+        df_original,
+        missing_indicators
+    ],
+    axis=1
+)
 
 
 print("\nMissing Indicator Result:")
@@ -511,64 +519,106 @@ print(df_indicator.head())
 # CREATE ONE FINAL OUTPUT DATAFRAME
 # ============================================================
 
+# Instead of adding columns one-by-one,
+# create all groups separately and combine them
+# using pd.concat().
+#
+# This prevents the Pandas
+# "DataFrame is highly fragmented" warning.
+
+
+# ------------------------------------------------------------
+# A. Original dataset
+# ------------------------------------------------------------
+
 final_result = df_original.copy()
 
 
 # ------------------------------------------------------------
-# A. Deletion indicator
+# B. Deletion indicator
 # ------------------------------------------------------------
 
-final_result[
-    "Deletion_Row_Removed"
-] = deletion_indicator
-
-
-# ------------------------------------------------------------
-# B. Mean-imputed values
-# ------------------------------------------------------------
-
-for column in numeric_columns:
-
-    final_result[
-        column + "_Mean_Imputed"
-    ] = df_mean[column]
+deletion_df = pd.DataFrame(
+    {
+        "Deletion_Row_Removed": deletion_indicator
+    },
+    index=df_original.index
+)
 
 
 # ------------------------------------------------------------
-# C. Median-imputed values
+# C. Mean-imputed values
 # ------------------------------------------------------------
 
-for column in numeric_columns:
+mean_imputed_df = df_mean[
+    numeric_columns
+].copy()
 
-    final_result[
-        column + "_Median_Imputed"
-    ] = df_median[column]
-
-
-# ------------------------------------------------------------
-# D. Model-based imputed values
-# ------------------------------------------------------------
-
-for column in numeric_columns:
-
-    final_result[
-        column + "_Model_Imputed"
-    ] = df_model[column]
+mean_imputed_df.columns = [
+    column + "_Mean_Imputed"
+    for column in numeric_columns
+]
 
 
 # ------------------------------------------------------------
-# E. Missing indicator features
+# D. Median-imputed values
 # ------------------------------------------------------------
 
-for column in df_original.columns:
+median_imputed_df = df_median[
+    numeric_columns
+].copy()
 
-    final_result[
-        column + "_Missing"
-    ] = (
-        df_original[column]
-        .isnull()
-        .astype(int)
-    )
+median_imputed_df.columns = [
+    column + "_Median_Imputed"
+    for column in numeric_columns
+]
+
+
+# ------------------------------------------------------------
+# E. Model-based imputed values
+# ------------------------------------------------------------
+
+model_imputed_df = df_model[
+    numeric_columns
+].copy()
+
+model_imputed_df.columns = [
+    column + "_Model_Imputed"
+    for column in numeric_columns
+]
+
+
+# ------------------------------------------------------------
+# F. Missing indicator features
+# ------------------------------------------------------------
+
+missing_indicator_df = (
+    df_original
+    .isnull()
+    .astype(int)
+)
+
+missing_indicator_df.columns = [
+    column + "_Missing"
+    for column in df_original.columns
+]
+
+
+# ------------------------------------------------------------
+# Combine everything at once
+# ------------------------------------------------------------
+
+final_result = pd.concat(
+    [
+        final_result,
+        deletion_df,
+        mean_imputed_df,
+        median_imputed_df,
+        model_imputed_df,
+        missing_indicator_df
+    ],
+    axis=1
+)
 
 
 # ============================================================

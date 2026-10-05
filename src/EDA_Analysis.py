@@ -8,8 +8,8 @@ import seaborn as sns
 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-DATASET_PATH = "C:/Users/srinu/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
-OUTPUT_FOLDER = "C:/Users/srinu/PycharmProjects/FlightFore/outputs/EDA_Analysis_outputs"
+DATASET_PATH = "C:/Users/hp/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
+OUTPUT_FOLDER = "C:/Users/hp/PycharmProjects/FlightFore/outputs/EDA_Analysis_outputs"
 
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 sns.set(style="whitegrid")

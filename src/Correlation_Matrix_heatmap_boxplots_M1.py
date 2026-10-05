@@ -9,7 +9,7 @@ import seaborn as sns
 # 1. Create Output Directory
 # =============================================================
 
-output_dir = "C:/Users/srinu/PycharmProjects/FlightFore/outputs/Boxplots_correlation"
+output_dir = "C:/Users/hp/PycharmProjects/FlightFore/outputs/Boxplots_correlation"
 os.makedirs(output_dir, exist_ok=True)
 
 
@@ -17,7 +17,7 @@ os.makedirs(output_dir, exist_ok=True)
 # 2. Load Flight Dataset
 # =============================================================
 
-dataset_path = "C:/Users/srinu/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
+dataset_path = "C:/Users/hp/PycharmProjects/FlightFore/datasets/flights_5000_each_month_with_class_labels (1).csv"
 
 df = pd.read_csv(dataset_path)
 
